@@ -19,7 +19,9 @@ def main():
     print("3. Multiplication")
     print("4. Division")
     print("5. Average")
-    print("6. Standard Deviation (sample)")
+    print("6. Mode")
+    print("7. Variance")
+    print("8. Standard Deviation (sample)")
     print("q: Quit")
     repl()
 
@@ -39,7 +41,11 @@ def repl():
         case "5":
             get_numbers("average")
         case "6":
-            get_numbers("stdev")
+            get_numbers("mode")
+        case "7":
+            get_numbers("variance")
+        case "8":
+              get_numbers("stdev")
         case "q":
             active = False
 
@@ -75,8 +81,15 @@ def average(number_list):
         sum += num
     print(sum/len(number_list))
 
+def mode(number_list):
+    print(statistics.mode(number_list))
+
+def variance(number_list):
+    print(statistics.variance(number_list))
+
 def stdev(number_list):
     print(statistics.stdev(number_list))
+
 
 def get_numbers(function):
     user_input = []
@@ -105,6 +118,11 @@ def get_numbers(function):
             division(user_input)
         case "average":
             average(user_input)
+        case "mode":
+            mode(user_input)
+        case "variance":
+            variance(user_input)
         case "stdev":
             stdev(user_input)
+        
 main()
