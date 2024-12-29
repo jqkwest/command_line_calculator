@@ -1,4 +1,5 @@
 from os import system, name
+import statistics
 
 def clear():
 
@@ -18,7 +19,7 @@ def main():
     print("3. Multiplication")
     print("4. Division")
     print("5. Average")
-    print("6. Standard Deviation")
+    print("6. Standard Deviation (sample)")
     print("q: Quit")
     repl()
 
@@ -35,6 +36,10 @@ def repl():
             get_numbers("multiplication")
         case "4":
             get_numbers("division")
+        case "5":
+            get_numbers("average")
+        case "6":
+            get_numbers("stdev")
         case "q":
             active = False
 
@@ -43,26 +48,35 @@ def repl():
 def add(number_list):
     sum = 0
     for num in number_list:
-        sum += float(num)
+        sum += num
     print(sum)
 
 def subtraction(number_list):
-    value = float(number_list[0])
+    value = number_list[0]
     for i in range(1,len(number_list)):
-        value -= float(number_list[i])
+        value -= number_list[i]
     print(value)
 
 def multiplication(number_list):
     value = 1
     for num in number_list:
-        value *= float(num)
+        value *= num
     print(value)
 
 def division(number_list):
-    value = float(number_list[0])
+    value = number_list[0]
     for i in range(1,len(number_list)):
-        value /= float(number_list[i])
+        value /= number_list[i]
     print(value)
+
+def average(number_list):
+    sum = 0
+    for num in number_list:
+        sum += num
+    print(sum/len(number_list))
+
+def stdev(number_list):
+    print(statistics.stdev(number_list))
 
 def get_numbers(function):
     user_input = []
@@ -71,8 +85,7 @@ def get_numbers(function):
     while active:
         temp_input = input(">>>")
         try:
-            float(temp_input)
-            user_input.append(temp_input)
+            user_input.append(float(temp_input))
         except ValueError:
             if temp_input =="#":
                 active = False
@@ -90,4 +103,8 @@ def get_numbers(function):
             multiplication(user_input)
         case "division":
             division(user_input)
+        case "average":
+            average(user_input)
+        case "stdev":
+            stdev(user_input)
 main()
